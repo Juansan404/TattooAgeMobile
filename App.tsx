@@ -1,20 +1,30 @@
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AppNavigator from './src/navigation/AppNavigator';
+import { solicitarPermisosNotificaciones } from './src/services/notificacionesService';
 
+/**
+ * Componente principal de la aplicación TattooAge
+ */
 export default function App() {
+  useEffect(() => {
+    // Solicitar permisos de notificaciones al iniciar la app
+    const inicializarNotificaciones = async () => {
+      try {
+        await solicitarPermisosNotificaciones();
+      } catch (error) {
+        console.error('Error al solicitar permisos de notificaciones:', error);
+      }
+    };
+
+    inicializarNotificaciones();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <AppNavigator />
+      <StatusBar style="light" />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

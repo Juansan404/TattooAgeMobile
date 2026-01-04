@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TattooAgeMobile",
-    "slug": "TattooAgeMobile",
+    "name": "TattooAge",
+    "slug": "tattooage",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,8 +12,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#e74c3c"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "TattooAge necesita acceso a la cámara para tomar fotos de tatuajes para el portfolio.",
+        "NSPhotoLibraryUsageDescription": "TattooAge necesita acceso a la galería para seleccionar fotos de tatuajes."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,10 +29,36 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES",
+        "NOTIFICATIONS"
+      ],
+      "package": "com.tattooage.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "@react-native-community/datetimepicker",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "TattooAge necesita acceso a tus fotos para seleccionar imágenes de tatuajes.",
+          "cameraPermission": "TattooAge necesita acceso a la cámara para tomar fotos de tatuajes."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#e74c3c",
+          "sounds": []
+        }
+      ]
+    ]
   }
 }
