@@ -1,8 +1,7 @@
 import { Artista } from '../types/Artista';
+import { API_ENDPOINTS } from '../config/apiConfig';
 
-// IP configurada automáticamente: 192.168.1.131
-//json-server --watch api/db.json --host 192.168.1.131 --port 3000
-const API_URL = 'http://192.168.1.131:3000/artistas';
+const API_URL = API_ENDPOINTS.artistas;
 
 /**
  * Obtiene todos los artistas disponibles

@@ -69,26 +69,6 @@
   ],
   "portfolio": [
     {
-      "id": "1",
-      "artistaId": 1,
-      "titulo": "Rosa realista en antebrazo",
-      "descripcion": "Tatuaje hiperrealista de rosa roja con hojas",
-      "fotoUrl": null,
-      "estiloTatuaje": "Realismo",
-      "fechaRealizado": "2025-12-15",
-      "createdAt": "2026-01-03T12:00:00"
-    },
-    {
-      "id": "2",
-      "artistaId": 1,
-      "titulo": "Retrato en blanco y negro",
-      "descripcion": "Retrato realista de familiar en hombro",
-      "fotoUrl": null,
-      "estiloTatuaje": "Realismo",
-      "fechaRealizado": "2025-12-10",
-      "createdAt": "2026-01-03T13:00:00"
-    },
-    {
       "id": "3",
       "artistaId": 2,
       "titulo": "Dragón japonés tradicional",

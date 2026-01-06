@@ -1,9 +1,9 @@
 import { TrabajoPortfolio } from '../types/TrabajoPortfolio';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system/legacy';
+import { API_ENDPOINTS } from '../config/apiConfig';
 
-// IP configurada automáticamente: 192.168.1.131
-const API_URL = 'http://192.168.1.131:3000/portfolio';
+const API_URL = API_ENDPOINTS.portfolio;
 
 /**
  * Solicita permisos para acceder a la cámara

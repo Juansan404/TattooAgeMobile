@@ -1,8 +1,8 @@
 import { Cita } from '../types/Cita';
 import { programarNotificacion, cancelarNotificacion } from './notificacionesService';
+import { API_ENDPOINTS } from '../config/apiConfig';
 
-// IP configurada automáticamente: 192.168.1.131
-const API_URL = 'http://192.168.1.131:3000/citas';
+const API_URL = API_ENDPOINTS.citas;
 
 /**
  * Obtiene todas las citas
