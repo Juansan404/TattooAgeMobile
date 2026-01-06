@@ -3,12 +3,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListaArtistasScreen from '../screens/cliente/ListaArtistasScreen';
 import PortfolioArtistaScreen from '../screens/cliente/PortfolioArtistaScreen';
 import MisCitasScreen from '../screens/cliente/MisCitasScreen';
+import ChatArtistaScreen from '../screens/cliente/ChatArtistaScreen';
 import { Artista } from '../types/Artista';
 
 export type ClienteStackParamList = {
   ListaArtistas: undefined;
   PortfolioArtista: { artista: Artista };
   MisCitas: undefined;
+  ChatArtista: { artistaId: number; artistaNombre: string };
 };
 
 const Stack = createNativeStackNavigator<ClienteStackParamList>();
@@ -44,6 +46,11 @@ const ClienteNavigator: React.FC = () => {
         name="MisCitas"
         component={MisCitasScreen}
         options={{ title: 'Mis Citas' }}
+      />
+      <Stack.Screen
+        name="ChatArtista"
+        component={ChatArtistaScreen}
+        options={{ title: 'Chat' }}
       />
     </Stack.Navigator>
   );

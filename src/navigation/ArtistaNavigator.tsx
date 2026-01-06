@@ -9,7 +9,7 @@ import { TrabajoPortfolio } from '../types/TrabajoPortfolio';
 export type ArtistaStackParamList = {
   SeleccionArtista: undefined;
   MiPortfolio: { artistaId: number; artistaNombre: string };
-  DetalleTrabajo: { trabajo: TrabajoPortfolio };
+  DetalleTrabajo: { trabajo: TrabajoPortfolio; artistaId: number };
   MiAgenda: { artistaId: number; artistaNombre: string };
 };
 

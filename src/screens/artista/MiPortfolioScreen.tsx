@@ -17,7 +17,7 @@ import ModalTrabajo from '../../components/artista/ModalTrabajo';
 type ArtistaStackParamList = {
   SeleccionArtista: undefined;
   MiPortfolio: { artistaId: number; artistaNombre: string };
-  DetalleTrabajo: { trabajo: TrabajoPortfolio };
+  DetalleTrabajo: { trabajo: TrabajoPortfolio; artistaId: number };
   MiAgenda: { artistaId: number; artistaNombre: string };
 };
 
@@ -84,7 +84,7 @@ const MiPortfolioScreen: React.FC<MiPortfolioScreenProps> = ({ route, navigation
   };
 
   const handleVerDetalle = (trabajo: TrabajoPortfolio) => {
-    navigation.navigate('DetalleTrabajo', { trabajo });
+    navigation.navigate('DetalleTrabajo', { trabajo, artistaId });
   };
 
   const renderTrabajo = (trabajo: TrabajoPortfolio) => (

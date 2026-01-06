@@ -1,26 +1,4 @@
 {
-  "usuarios": [
-    {
-      "id": "1",
-      "nombre": "Juan Pérez",
-      "email": "juan@cliente.com",
-      "rol": "cliente"
-    },
-    {
-      "id": "2",
-      "nombre": "María García",
-      "email": "maria@artista.com",
-      "rol": "artista",
-      "artistaId": 1
-    },
-    {
-      "id": "3",
-      "nombre": "Carlos Ruiz",
-      "email": "carlos@artista.com",
-      "rol": "artista",
-      "artistaId": 2
-    }
-  ],
   "artistas": [
     {
       "id": "1",

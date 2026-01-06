@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   View,
   StyleSheet,
@@ -17,6 +17,7 @@ type ClienteStackParamList = {
   ListaArtistas: undefined;
   PortfolioArtista: { artista: Artista };
   MisCitas: undefined;
+  ChatArtista: { artistaId: number; artistaNombre: string };
 };
 
 type ListaArtistasScreenNavigationProp = NativeStackNavigationProp<
@@ -57,6 +58,13 @@ const ListaArtistasScreen: React.FC<ListaArtistasScreenProps> = ({ navigation })
     navigation.navigate('PortfolioArtista', { artista });
   };
 
+  const handleAbrirChat = (artista: Artista) => {
+    navigation.navigate('ChatArtista', {
+      artistaId: artista.id,
+      artistaNombre: artista.nombre,
+    });
+  };
+
   if (cargando) {
     return (
       <SafeAreaView style={styles.container}>
@@ -83,7 +91,11 @@ const ListaArtistasScreen: React.FC<ListaArtistasScreenProps> = ({ navigation })
       <FlatList
         data={artistas}
         renderItem={({ item }) => (
-          <ArtistaCard artista={item} onPress={() => handleVerPortfolio(item)} />
+          <ArtistaCard
+            artista={item}
+            onPress={() => handleVerPortfolio(item)}
+            onPressChat={() => handleAbrirChat(item)}
+          />
         )}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.lista}

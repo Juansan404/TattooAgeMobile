@@ -18,13 +18,11 @@ import {
 } from '../../services/portfolioService';
 import ModalTrabajo from '../../components/artista/ModalTrabajo';
 
-// ID de artista hardcodeado (en producción vendría de autenticación)
-const ARTISTA_ID = 1;
-
 type ArtistaStackParamList = {
-  MiPortfolio: undefined;
-  DetalleTrabajo: { trabajo: TrabajoPortfolio };
-  MiAgenda: undefined;
+  SeleccionArtista: undefined;
+  MiPortfolio: { artistaId: number; artistaNombre: string };
+  DetalleTrabajo: { trabajo: TrabajoPortfolio; artistaId: number };
+  MiAgenda: { artistaId: number; artistaNombre: string };
 };
 
 type DetalleTrabajoScreenProps = NativeStackScreenProps<
@@ -39,7 +37,7 @@ const DetalleTrabajoScreen: React.FC<DetalleTrabajoScreenProps> = ({
   route,
   navigation,
 }) => {
-  const { trabajo } = route.params;
+  const { trabajo, artistaId } = route.params;
   const [modalVisible, setModalVisible] = useState(false);
 
   const formatearFecha = (fecha: string) => {
@@ -141,7 +139,7 @@ const DetalleTrabajoScreen: React.FC<DetalleTrabajoScreenProps> = ({
         onClose={() => setModalVisible(false)}
         onGuardar={handleGuardarEdicion}
         trabajoEditar={trabajo}
-        artistaId={ARTISTA_ID}
+        artistaId={artistaId}
       />
     </SafeAreaView>
   );
