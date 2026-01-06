@@ -36,3 +36,35 @@ export const obtenerArtistaPorId = async (id: number): Promise<Artista> => {
     throw error;
   }
 };
+
+/**
+ * Crea un nuevo artista
+ */
+export const crearArtista = async (
+  artista: Omit<Artista, 'id' | 'fotoPerfil'>
+): Promise<Artista> => {
+  try {
+    const nuevoArtista = {
+      ...artista,
+      fotoPerfil: null,
+    };
+
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(nuevoArtista),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al crear artista');
+    }
+
+    const artistaCreado = await response.json();
+    return artistaCreado;
+  } catch (error) {
+    console.error('Error en crearArtista:', error);
+    throw error;
+  }
+};

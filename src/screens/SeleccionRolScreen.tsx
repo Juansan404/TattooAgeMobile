@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RootStackParamList = {
@@ -42,7 +43,7 @@ const SeleccionRolScreen: React.FC<SeleccionRolScreenProps> = ({ navigation }) =
             onPress={handleSeleccionarCliente}
             activeOpacity={0.8}
           >
-            <Text style={styles.botonIcono}>👤</Text>
+            <Ionicons name="person" size={48} color="#3498db" style={{ marginBottom: 12 }} />
             <Text style={styles.botonTexto}>Soy Cliente</Text>
             <Text style={styles.botonDescripcion}>
               Buscar artistas y agendar citas
@@ -54,7 +55,7 @@ const SeleccionRolScreen: React.FC<SeleccionRolScreenProps> = ({ navigation }) =
             onPress={handleSeleccionarArtista}
             activeOpacity={0.8}
           >
-            <Text style={styles.botonIcono}>🎨</Text>
+            <Ionicons name="color-palette" size={48} color="#e74c3c" style={{ marginBottom: 12 }} />
             <Text style={styles.botonTexto}>Soy Artista</Text>
             <Text style={styles.botonDescripcion}>
               Gestionar portfolio y agenda
@@ -113,10 +114,6 @@ const styles = StyleSheet.create({
   botonArtista: {
     borderWidth: 2,
     borderColor: '#e74c3c',
-  },
-  botonIcono: {
-    fontSize: 48,
-    marginBottom: 12,
   },
   botonTexto: {
     fontSize: 24,

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TrabajoPortfolio } from '../../types/TrabajoPortfolio';
 import {
   obtenerTrabajosArtista,
@@ -14,29 +14,24 @@ import ResultadosLayer from '../../components/layers/ResultadosLayer';
 import PortfolioItem from '../../components/artista/PortfolioItem';
 import ModalTrabajo from '../../components/artista/ModalTrabajo';
 
-// ID de artista hardcodeado (en producción vendría de autenticación)
-const ARTISTA_ID = 1;
-
 type ArtistaStackParamList = {
-  MiPortfolio: undefined;
+  SeleccionArtista: undefined;
+  MiPortfolio: { artistaId: number; artistaNombre: string };
   DetalleTrabajo: { trabajo: TrabajoPortfolio };
-  MiAgenda: undefined;
+  MiAgenda: { artistaId: number; artistaNombre: string };
 };
 
-type MiPortfolioScreenNavigationProp = NativeStackNavigationProp<
+type MiPortfolioScreenProps = NativeStackScreenProps<
   ArtistaStackParamList,
   'MiPortfolio'
 >;
-
-interface MiPortfolioScreenProps {
-  navigation: MiPortfolioScreenNavigationProp;
-}
 
 /**
  * Pantalla de portfolio del artista (CON SISTEMA DE CAPAS)
  * Capa 1: Bienvenida -> Capa 2: Carga -> Capa 3: Resultados
  */
-const MiPortfolioScreen: React.FC<MiPortfolioScreenProps> = ({ navigation }) => {
+const MiPortfolioScreen: React.FC<MiPortfolioScreenProps> = ({ route, navigation }) => {
+  const { artistaId, artistaNombre } = route.params;
   const [capa, setCapa] = useState<1 | 2 | 3>(1);
   const [trabajos, setTrabajos] = useState<TrabajoPortfolio[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -59,7 +54,7 @@ const MiPortfolioScreen: React.FC<MiPortfolioScreenProps> = ({ navigation }) => 
 
   const cargarTrabajos = async () => {
     try {
-      const listaTrabajos = await obtenerTrabajosArtista(ARTISTA_ID);
+      const listaTrabajos = await obtenerTrabajosArtista(artistaId);
       setTrabajos(listaTrabajos);
 
       // Mostrar capa de carga por 1 segundo antes de mostrar resultados
@@ -130,7 +125,7 @@ const MiPortfolioScreen: React.FC<MiPortfolioScreenProps> = ({ navigation }) => 
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onGuardar={handleGuardarTrabajo}
-        artistaId={ARTISTA_ID}
+        artistaId={artistaId}
       />
     </SafeAreaView>
   );

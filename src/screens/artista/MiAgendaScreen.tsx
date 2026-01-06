@@ -9,17 +9,28 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Cita } from '../../types/Cita';
 import { obtenerCitasArtista, confirmarCita } from '../../services/citasService';
 import CitaAgendaItem from '../../components/artista/CitaAgendaItem';
 
-// ID de artista hardcodeado (en producción vendría de autenticación)
-const ARTISTA_ID = 1;
+type ArtistaStackParamList = {
+  SeleccionArtista: undefined;
+  MiPortfolio: { artistaId: number; artistaNombre: string };
+  DetalleTrabajo: undefined;
+  MiAgenda: { artistaId: number; artistaNombre: string };
+};
+
+type MiAgendaScreenProps = NativeStackScreenProps<
+  ArtistaStackParamList,
+  'MiAgenda'
+>;
 
 /**
  * Pantalla de agenda del artista para ver sus citas
  */
-const MiAgendaScreen: React.FC = () => {
+const MiAgendaScreen: React.FC<MiAgendaScreenProps> = ({ route }) => {
+  const { artistaId } = route.params;
   const [citas, setCitas] = useState<Cita[]>([]);
   const [cargando, setCargando] = useState(true);
 
@@ -32,7 +43,7 @@ const MiAgendaScreen: React.FC = () => {
   const cargarCitas = async () => {
     try {
       setCargando(true);
-      const listaCitas = await obtenerCitasArtista(ARTISTA_ID);
+      const listaCitas = await obtenerCitasArtista(artistaId);
       setCitas(listaCitas);
     } catch (error) {
       console.error('Error al cargar citas:', error);

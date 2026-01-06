@@ -1,5 +1,8 @@
 import { Platform } from 'react-native';
 
+//json-server --watch api/db.json --port 3000
+
+
 /**
  * CONFIGURACIÓN IMPORTANTE:
  *

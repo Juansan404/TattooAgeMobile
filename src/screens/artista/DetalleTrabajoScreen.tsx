@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TrabajoPortfolio } from '../../types/TrabajoPortfolio';
 import {
@@ -119,7 +120,8 @@ const DetalleTrabajoScreen: React.FC<DetalleTrabajoScreenProps> = ({
               onPress={handleEditar}
               activeOpacity={0.8}
             >
-              <Text style={styles.botonEditarTexto}>✏️ Editar</Text>
+              <Ionicons name="pencil" size={18} color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.botonEditarTexto}>Editar</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -127,7 +129,8 @@ const DetalleTrabajoScreen: React.FC<DetalleTrabajoScreenProps> = ({
               onPress={handleEliminar}
               activeOpacity={0.8}
             >
-              <Text style={styles.botonEliminarTexto}>🗑️ Eliminar</Text>
+              <Ionicons name="trash" size={18} color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.botonEliminarTexto}>Eliminar</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -216,7 +219,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     borderRadius: 12,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   botonEditar: {
     backgroundColor: '#3498db',

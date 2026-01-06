@@ -1,14 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SeleccionArtistaScreen from '../screens/artista/SeleccionArtistaScreen';
 import MiPortfolioScreen from '../screens/artista/MiPortfolioScreen';
 import DetalleTrabajoScreen from '../screens/artista/DetalleTrabajoScreen';
 import MiAgendaScreen from '../screens/artista/MiAgendaScreen';
 import { TrabajoPortfolio } from '../types/TrabajoPortfolio';
 
 export type ArtistaStackParamList = {
-  MiPortfolio: undefined;
+  SeleccionArtista: undefined;
+  MiPortfolio: { artistaId: number; artistaNombre: string };
   DetalleTrabajo: { trabajo: TrabajoPortfolio };
-  MiAgenda: undefined;
+  MiAgenda: { artistaId: number; artistaNombre: string };
 };
 
 const Stack = createNativeStackNavigator<ArtistaStackParamList>();
@@ -30,6 +32,11 @@ const ArtistaNavigator: React.FC = () => {
         headerShadowVisible: false,
       }}
     >
+      <Stack.Screen
+        name="SeleccionArtista"
+        component={SeleccionArtistaScreen}
+        options={{ title: 'Perfil de Artista' }}
+      />
       <Stack.Screen
         name="MiPortfolio"
         component={MiPortfolioScreen}

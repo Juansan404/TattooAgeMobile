@@ -12,6 +12,7 @@ import {
   Platform,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { Ionicons } from '@expo/vector-icons';
 import { TrabajoPortfolio } from '../../types/TrabajoPortfolio';
 import { tomarFoto, seleccionarFoto } from '../../services/portfolioService';
 
@@ -179,14 +180,16 @@ const ModalTrabajo: React.FC<ModalTrabajoProps> = ({
                     style={styles.botonFoto}
                     onPress={handleTomarFoto}
                   >
-                    <Text style={styles.botonFotoTexto}>📷 Tomar Foto</Text>
+                    <Ionicons name="camera" size={20} color="#fff" style={{ marginRight: 8 }} />
+                    <Text style={styles.botonFotoTexto}>Tomar Foto</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
                     style={styles.botonFoto}
                     onPress={handleSeleccionarFoto}
                   >
-                    <Text style={styles.botonFotoTexto}>🖼️ Galería</Text>
+                    <Ionicons name="images" size={20} color="#fff" style={{ marginRight: 8 }} />
+                    <Text style={styles.botonFotoTexto}>Galería</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -358,7 +361,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#e74c3c',
     padding: 14,
     borderRadius: 10,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   botonFotoTexto: {
     color: '#fff',
